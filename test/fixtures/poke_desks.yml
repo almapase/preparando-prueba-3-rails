@@ -1,11 +1,31 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 
-  pokemon_id: 
+onetrainer1:
+  user: trainer1
+  pokemon: ratata
   level: 1
 
-two:
-  user_id: 
-  pokemon_id: 
+twotrainer1:
+  user: trainer1
+  pokemon: ratata
+  level: 2
+
+threetrainer1:
+  user: trainer1
+  pokemon: caterpie
+  level: 4
+
+oneadmin:
+  user: admin
+  pokemon: ratata
   level: 1
+
+twoadmin:
+  user: admin
+  pokemon: ratata
+  level: 2
+
+threeadmin:
+  user: admin
+  pokemon: caterpie
+  level: 4

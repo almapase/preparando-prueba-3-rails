@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PokemonsControllerTest < ActionController::TestCase
   setup do
-    @pokemon = pokemons(:one)
+    @pokemon = pokemons(:ratata)
   end
 
   test "should get index" do
