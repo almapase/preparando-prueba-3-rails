@@ -1,11 +1,28 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  get 'users/index'
+
+  root 'pokemons#index'
+
+  # get 'poke_desks/index'
   resources :pokemons
+  devise_for :users, controllers: {
+        registrations: 'users/registrations'
+      }
+      
+  resources :users, only: [:index] do
+    resources :poke_desks, only: [:index, :create] do
+      member do
+        get 'levelup'
+      end
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pokemons#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

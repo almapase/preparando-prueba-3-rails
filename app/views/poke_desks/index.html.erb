@@ -1,0 +1,57 @@
+<div class="col-md-8">
+  <h1>PokeDesks of <%= @user.name %> </h1>
+  <% @poke_desks.each do |poke_desk| %>
+    <div class=" col-md-3 panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= poke_desk.pokemon.name %></h3>
+      </div>
+      <div class="panel-body">
+        <p>
+          Level: <%= poke_desk.level %>
+          <% if !current_user.nil? && current_user.id == @user.id %>
+            <a href=<%= levelup_user_poke_desk_path(@user, poke_desk.id) %>>
+              <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+            </a>
+          <% end %>
+        </p>
+        <p><%= poke_desk.pokemon.description %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% if !current_user.nil? && current_user.id == @user.id %>
+  <div class="col-md-4">
+    <h1>List of Pokemons </h1>
+    <div class="well">
+      <div class="row">
+        <%= form_tag user_poke_desks_path, method: :get, class: "navbar-form navbar-left search-form" do %>
+          <%= text_field_tag(
+              :search,
+              params[:search],
+              placeholder: "Search",
+              class: "form-control"
+          ) %>
+          <%= submit_tag("Search", class: "form-control") %>
+        <% end %>
+      </div>
+      <div class="row">
+        <% @pokemons.each do |pokemon| %>
+          <%= form_for [@user, PokeDesk.new] do |f| %>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <%= f.submit("<<", class: "btn btn-default") %>
+              </span>
+              <%= f.text_field(
+                  :pokemon_id,
+                  value: pokemon.name,
+                  class: "form-control",
+                  readonly: true
+              ) %>
+              <%= f.hidden_field(:pokemon_id, value: pokemon.id) %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<h1>List of Players</h1>
+<% @users.each do |user| %>
+  <div class=" col-md-3 panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= user.name %></h3>
+    </div>
+    <div class="panel-body">
+      <p>Mail: <%= user.email %></p>
+      <p><%= link_to 'Poke Desk', user_poke_desks_path(user) %></p>
+    </div>
+  </div>
+<% end %>
