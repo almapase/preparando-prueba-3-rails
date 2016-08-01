@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
 
   get 'users/index'
-
   root 'pokemons#index'
 
-  # get 'poke_desks/index'
-  resources :pokemons
+  resources :pokemons do
+    resources :sightings, except: [:index, :show]
+  end
+
   devise_for :users, controllers: {
         registrations: 'users/registrations'
       }
-      
+
   resources :users, only: [:index] do
     resources :poke_desks, only: [:index, :create] do
       member do

@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class PokemonsControllerTest < ActionController::TestCase
+  include Devise::Test::ControllerHelpers
   setup do
     @pokemon = pokemons(:ratata)
   end

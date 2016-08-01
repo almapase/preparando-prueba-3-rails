@@ -11,9 +11,12 @@
     <div class="panel-body">
       <p><%= pokemon.description %></p>
       <p>
+        <%= link_to 'Sighting Report', new_pokemon_sighting_path(pokemon.id) %>
+      </p>
+      <p>
         <%= link_to 'Show', pokemon %> |
-        <%= link_to 'Edit', edit_pokemon_path(pokemon) %> |
-        <%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <!-- <%= link_to 'Edit', edit_pokemon_path(pokemon) %> |
+        <%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %> -->
       </p>
     </div>
   </div>
