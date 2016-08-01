@@ -16,13 +16,13 @@ names.each_with_index do |name, i|
   Pokemon.create!(name: name, description: descriptions.sample)
 end
 
-u = User.new(email: "admin@poke.com", password: "12345678", name: "admin", role: 0)
+u = User.new(email: "admin@poke.com", password: "12345678", name: "admin", role: 1)
 u.poke_desks.build(pokemon: Pokemon.find_by(name: "Ratata"), level: 1)
 u.poke_desks.build(pokemon: Pokemon.find_by(name: "Ratata"), level: 2)
 u.poke_desks.build(pokemon: Pokemon.find_by(name: "Caterpie"), level: 5)
 u.save!
 
-u2 = User.create(email: "trainer1@poke.com", password: "12345678", name: "Trainer1", role: 1)
+u2 = User.create(email: "trainer1@poke.com", password: "12345678", name: "Trainer1", role: 0)
 u2.poke_desks.build(pokemon: Pokemon.find_by(name: "Ratata"), level: 1)
 u2.poke_desks.build(pokemon: Pokemon.find_by(name: "Ratata"), level: 2)
 u2.poke_desks.build(pokemon: Pokemon.find_by(name: "Caterpie"), level: 5)

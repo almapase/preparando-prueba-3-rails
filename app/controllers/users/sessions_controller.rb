@@ -1,9 +1,13 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
 
+  def after_sign_in_path_for(resource)
+    user_poke_desks_path(current_user)
+  end
+  
   # GET /resource/sign_in
   # def new
-  #   super 
+  #   super
   # end
 
   # POST /resource/sign_in
