@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :poke_desks, only: [:index, :create] do
       member do
         get 'levelup'
+        get 'change'
       end
     end
   end

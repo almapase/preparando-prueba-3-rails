@@ -1,5 +1,5 @@
 class PokeDesksController < ApplicationController
-  before_action :set_poke_desk, only: [:levelup]
+  before_action :set_poke_desk, only: [:levelup, :change]
 
   def index
     @user = User.find(params[:user_id])
@@ -28,6 +28,23 @@ class PokeDesksController < ApplicationController
     @poke_desk.level += 1
     @poke_desk.save
     redirect_to user_poke_desks_path(@poke_desk.user)
+  end
+
+  def change
+
+    # sobre escribo el user del poke_desk actual, con el current_user
+    @poke_desk.user = current_user
+
+    # obtego un poke_desk del current_user User.order("RANDOM()").first
+    poke_desk = PokeDesk.where(user: current_user).order("RANDOM()").first
+    # le cambio user del poke_desk del current_user, por el del user del poke_desk actual
+    poke_desk.user_id = params[:user_id]
+
+    if @poke_desk.save && poke_desk.save
+      redirect_to user_poke_desks_path(params[:user_id]), notice: 'Poke desk was successfully changed.'
+    else
+      redirect_to user_poke_desks_path(params[:user_id]), alert: 'Poke desk wasnt successfully changed.'
+    end
   end
 
   private

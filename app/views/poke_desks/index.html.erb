@@ -15,6 +15,13 @@
           <% end %>
         </p>
         <p><%= poke_desk.pokemon.description %></p>
+        <p>
+          <% if !current_user.nil? && current_user.id != @user.id %>
+            <a href=<%= change_user_poke_desk_path(@user, poke_desk.id) %>>
+              Change <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            </a>
+          <% end %>
+        </p>
       </div>
     </div>
   <% end %>
