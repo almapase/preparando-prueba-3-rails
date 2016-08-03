@@ -29,9 +29,12 @@
     <div class="form-group">
       <%= f.label :role, class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
-        <%= f.select(:role, class: "form-control") do %>
-          <%= options_for_select(User.roles.map{|k,v| [k,k]}) %>
-        <% end %>
+        <%= f.select(
+            :role,
+            options_for_select(User.roles.map{|k,v| [k,k]}, @admin_user.role),
+            {},
+            class:"form-control"
+        ) %>
       </div>
     </div>
 
